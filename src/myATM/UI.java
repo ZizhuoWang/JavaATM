@@ -14,6 +14,8 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.DecimalFormat;
 
 public class UI {
@@ -244,7 +246,12 @@ public class UI {
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!textField.getText().isEmpty()) {
-					boolean successful = client.newUser(textField.getText(), textField_1.getText());
+					boolean successful=false;
+					try {
+						successful = client.newUser(URLEncoder.encode(textField.getText(), "utf-8"), textField_1.getText());
+					} catch (UnsupportedEncodingException e1) {
+						e1.printStackTrace();
+					}
 					if (successful) {
 						textArea.setText("注册成功！");
 					} else {

@@ -2,7 +2,9 @@ package myATM;
 
 import java.io.ByteArrayInputStream;
 import java.io.ObjectInputStream;
+import java.io.UnsupportedEncodingException;
 import java.net.ServerSocket;
+import java.net.URLDecoder;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -57,8 +59,12 @@ public class ServerDaemon {
 						show+="服务器已启动\n在线人数：" + CURRENT_THREADS+"\n";
 						for (Iterator iterator = users.iterator();iterator.hasNext();) {
 							User temp = (User)iterator.next();
-							show+=temp.getName()+"的总存款金额："+
-									format.format(temp.calculateTotalBalance())+"元\n";
+							try {
+								show+=URLDecoder.decode(temp.getName(), "utf-8")+"的总存款金额："+
+										format.format(temp.calculateTotalBalance())+"元\n";
+							} catch (UnsupportedEncodingException e) {
+								e.printStackTrace();
+							}
 						}
 						area.setText(show);
 						try {

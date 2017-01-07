@@ -27,6 +27,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.net.URLEncoder;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -404,7 +405,7 @@ public class Server extends Thread {
 			Connection connection = getConnection();
 			PreparedStatement preparedStatement = connection.prepareStatement("SELECT * "
 					+ "FROM atm.user WHERE name=?");
-			preparedStatement.setString(1, user.getName());
+			preparedStatement.setString(1, URLEncoder.encode(user.getName(), "utf-8"));
 			ResultSet resultSet = preparedStatement.executeQuery();
 			resultSet.next();
 			byte[] data = resultSet.getBytes(2);

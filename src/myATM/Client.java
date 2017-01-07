@@ -27,6 +27,7 @@ import java.io.ObjectOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.net.URLDecoder;
 import java.text.DecimalFormat;
 import java.util.Iterator;
 
@@ -70,7 +71,11 @@ public class Client{
 			e.printStackTrace();
 		} 
 		//将用户的信息一个一个的加上去
-		info+="当前用户："+currentUser.getName();
+		try {
+			info+="当前用户："+URLDecoder.decode(currentUser.getName(), "utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
 		DecimalFormat format = new DecimalFormat("0.00");
 		info+="\n总存款"+format.format(currentUser.calculateTotalBalance())+"元";
 		info+="\n活期存款："+format.format(currentUser.getCheckBalance().getCash())+"元";
