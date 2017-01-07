@@ -36,6 +36,8 @@
     - object：longblob，非空
 4. 字段作用：name负责存储用户的用户名。object负责存储用户类的对象，该对象中保存有包括用户密码在内的各种用户信息。
 5. 优点：在一定程度上减少数据库的读取、写入次数。用户的信息并不以明文方式呈现，在一定程度上有加密的作用。
+
 ***
+
 # <div align = middle>程序使用流程</div>
 ![](https://raw.githubusercontent.com/ZizhuoWang/ImageBed/master/JavaATM/ATM.png)
