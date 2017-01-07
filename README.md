@@ -26,6 +26,7 @@
 &emsp;&emsp;客户端和服务器之间信息传递依靠对象输入输出流，信息载体是Command类对象和User类对象。
 &emsp;&emsp;数据库的操作由Server类完成。
 &emsp;&emsp;大部分对象都实现了可序列化Serializable接口，以便存入数据库。
+&emsp;&emsp;采用了UTF-8编解码，所以**支持中文**。
 ***
 # <div align = middle>数据库结构</div>
 
